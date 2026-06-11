@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Nosso Amor 💖</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pink: #ff4f81;
+      --pink-dark: #ff2f78;
+      --gold: #ffd86b;
+      --wine: #ffffff;
+      --deep: #2d0b45;
+      --card-text: #43152b;
+      --white-glass: rgba(255, 255, 255, 0.92);
+      --glass-dark: rgba(255, 255, 255, 0.14);
+      --shadow: 0 24px 60px rgba(20, 2, 35, 0.34);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255, 126, 179, 0.95) 0%, transparent 32%),
+        radial-gradient(circle at 95% 20%, rgba(255, 216, 107, 0.35) 0%, transparent 22%),
+        radial-gradient(circle at 0% 85%, rgba(255, 77, 141, 0.55) 0%, transparent 28%),
+        linear-gradient(180deg, #210733 0%, #40105a 38%, #7b2c67 73%, #ff8fab 100%);
+      color: var(--wine);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    #stars {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      color: white;
+      animation: twinkle 3s infinite ease-in-out;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,.85));
+    }
+
+    .glow-orb {
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.20), transparent 68%);
+      z-index: -3;
+      animation: floatOrb 9s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .orb-one {
+      top: 9%;
+      left: -90px;
+    }
+
+    .orb-two {
+      right: -110px;
+      bottom: 14%;
+      animation-delay: 1.4s;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 34px 22px;
+      position: relative;
+    }
+
+    .hero-card {
+      width: min(960px, 100%);
+      background: rgba(255, 255, 255, 0.13);
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      border-radius: 38px;
+      padding: clamp(34px, 7vw, 64px) clamp(20px, 5vw, 52px);
+      box-shadow: var(--shadow), inset 0 0 50px rgba(255,255,255,.07);
+      backdrop-filter: blur(22px);
+      animation: aparecer 1s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background:
+        linear-gradient(120deg, transparent 0%, rgba(255,255,255,.22) 38%, transparent 56%);
+      transform: translateX(-100%);
+      animation: shine 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255,255,255,.35);
+      letter-spacing: .4px;
+    }
+
+    header h1 {
+      font-family: "Pacifico", cursive;
+      font-size: clamp(2.7rem, 8vw, 5.7rem);
+      line-height: 1.05;
+      margin-bottom: 14px;
+      color: #fff;
+      text-shadow:
+        0 0 16px rgba(255,255,255,.38),
+        0 0 42px rgba(255,79,129,.72),
+        0 7px 24px rgba(0,0,0,.28);
+    }
+
+    header p {
+      font-size: clamp(1rem, 3vw, 1.22rem);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    .hero-subtitle {
+      margin: 5px auto 14px;
+      font-size: clamp(1.08rem, 3vw, 1.35rem);
+      font-weight: 700;
+      color: #ffe3ef;
+      text-shadow: 0 0 18px rgba(255,255,255,.24);
+    }
+
+    .hero-quote {
+      margin-top: 14px;
+      font-style: italic;
+      color: #ffe8f2;
+      opacity: .92;
+    }
+
+    .contador-amor {
+      margin: 28px auto 0;
+      padding: 18px 22px;
+      max-width: 760px;
+      background: rgba(255,255,255,0.20);
+      border: 1px solid rgba(255,255,255,0.36);
+      border-radius: 24px;
+      font-size: 1.05rem;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.16);
+      color: #fff;
+    }
+
+    .contador-amor strong {
+      color: var(--gold);
+      text-shadow: 0 0 14px rgba(255,216,107,.32);
+    }
+
+    .btn-music {
+      margin-top: 30px;
+      padding: 16px 30px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ffd86b, #ff4f81 50%, #a72cff);
+      color: white;
+      font-size: 1.04rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 16px 38px rgba(255, 79, 129, 0.42);
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+    }
+
+    .btn-music:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 22px 46px rgba(255, 79, 129, 0.54);
+      filter: brightness(1.06);
+    }
+
+    .music-note {
+      margin-top: 14px;
+      font-size: .9rem;
+      color: #ffe8f2;
+      opacity: .9;
+    }
+
+    .scroll-hint {
+      margin-top: 26px;
+      font-size: .92rem;
+      opacity: .82;
+      animation: bounce 1.8s infinite ease-in-out;
+    }
+
+    main {
+      padding-bottom: 30px;
+    }
+
+    section {
+      padding: 46px 20px;
+      max-width: 1080px;
+      margin: auto;
+    }
+
+    .card {
+      background: var(--white-glass);
+      color: var(--card-text);
+      border: 1px solid rgba(255,255,255,0.88);
+      border-radius: 30px;
+      padding: clamp(24px, 5vw, 40px);
+      margin-bottom: 34px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      animation: subir .7s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      right: -80px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(255,79,129,.23), transparent 70%);
+      pointer-events: none;
+    }
+
+    .card h2,
+    .section-title {
+      margin-bottom: 18px;
+      color: #c9184a;
+      font-size: clamp(1.55rem, 4vw, 2.25rem);
+      line-height: 1.2;
+    }
+
+    .card p,
+    .nerd-love p {
+      line-height: 1.85;
+      font-size: 1.04rem;
+    }
+
+    .timeline {
+      margin: 8px 0 6px;
+      padding-left: 22px;
+      border-left: 3px solid rgba(255,79,129,.42);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 22px 18px;
+    }
+
+    .timeline-item::before {
+      content: "❤️";
+      position: absolute;
+      left: -34px;
+      top: 0;
+      background: #fff;
+      border-radius: 50%;
+      font-size: 1.05rem;
+    }
+
+    .timeline-item strong {
+      color: #c9184a;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 26px;
+      margin-top: 24px;
+    }
+
+    .foto-card {
+      background: rgba(255,255,255,0.96);
+      color: var(--card-text);
+      border-radius: 10px;
+      padding: 14px 14px 22px;
+      box-shadow: 0 16px 32px rgba(20, 2, 35, 0.25);
+      transition: transform .28s ease, box-shadow .28s ease;
+      position: relative;
+    }
+
+    .foto-card:nth-child(odd) {
+      transform: rotate(-1.4deg);
+    }
+
+    .foto-card:nth-child(even) {
+      transform: rotate(1.3deg);
+    }
+
+    .foto-card:hover {
+      transform: translateY(-8px) rotate(0deg) scale(1.02);
+      box-shadow: 0 24px 44px rgba(20, 2, 35, 0.34);
+    }
+
+    .foto-card::after {
+      content: "♡";
+      position: absolute;
+      right: 18px;
+      bottom: 8px;
+      color: rgba(201,24,74,.22);
+      font-size: 1.25rem;
+    }
+
+    .foto-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .foto-card p {
+      padding: 16px 8px 0;
+      font-size: .95rem;
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    .nerd-love {
+      background:
+        radial-gradient(circle at top right, rgba(255, 79, 129, .26), transparent 34%),
+        linear-gradient(135deg, rgba(28,8,45,0.98), rgba(92,24,77,0.98));
+      color: #ffe4ef;
+      border-radius: 28px;
+      padding: clamp(24px, 5vw, 40px);
+      box-shadow: 0 22px 50px rgba(43, 15, 31, 0.34);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.16);
+    }
+
+    .nerd-love::before {
+      content: "achievement unlocked ❤️";
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      color: #ffd86b;
+      font-family: monospace;
+      font-size: .82rem;
+      opacity: .86;
+    }
+
+    .nerd-love p {
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .references {
+      font-weight: 700;
+    }
+
+    .checkpoint {
+      text-align: center;
+    }
+
+    .final-message {
+      max-width: 950px;
+      margin: 34px auto 0;
+      padding: clamp(30px, 6vw, 58px);
+      border-radius: 36px;
+      background:
+        radial-gradient(circle at top left, rgba(255,216,107,.24), transparent 32%),
+        linear-gradient(135deg, rgba(255,255,255,0.94), rgba(255,224,238,0.96));
+      border: 1px solid rgba(255,255,255,0.95);
+      color: #c9184a;
+      text-align: center;
+      font-size: clamp(1.35rem, 4.7vw, 2.5rem);
+      line-height: 1.55;
+      font-family: "Pacifico", cursive;
+      box-shadow: var(--shadow), 0 0 38px rgba(255,79,129,.22);
+    }
+
+    .achievement {
+      margin: 58px auto 0;
+      max-width: 760px;
+      text-align: center;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.30);
+      color: #fff;
+      backdrop-filter: blur(18px);
+      padding: clamp(30px, 5vw, 46px);
+      border-radius: 32px;
+      box-shadow: 0 0 48px rgba(255,105,180,.32), var(--shadow);
+    }
+
+    .achievement h2 {
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-size: clamp(1.6rem, 5vw, 2.5rem);
+      text-shadow: 0 0 16px rgba(255,216,107,.28);
+    }
+
+    .achievement h3 {
+      color: white;
+      margin-bottom: 24px;
+      font-size: clamp(1.25rem, 4vw, 1.8rem);
+    }
+
+    .game-list {
+      line-height: 2.05;
+      font-size: 1.08rem;
+      text-align: left;
+      display: inline-block;
+    }
+
+    .future {
+      margin-top: 34px;
+      padding: clamp(28px, 5vw, 42px);
+      text-align: center;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 32px;
+      color: #fff;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .future h2 {
+      margin-bottom: 24px;
+      color: #fff;
+      font-size: clamp(1.55rem, 4vw, 2.2rem);
+    }
+
+    .future p {
+      margin-bottom: 12px;
+      font-size: 1.08rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 42px 20px 55px;
+      font-size: 1rem;
+      color: #fff;
+      opacity: .92;
+    }
+
+    .heart {
+      position: fixed;
+      top: -30px;
+      color: rgba(255,255,255,0.9);
+      animation: fall linear infinite;
+      z-index: -1;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 8px rgba(201,24,74,.35));
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(112vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.18;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.45);
+      }
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: scale(.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes subir {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes shine {
+      0%, 35% {
+        transform: translateX(-120%);
+      }
+      60%, 100% {
+        transform: translateX(120%);
+      }
+    }
+
+    @keyframes floatOrb {
+      from {
+        transform: translateY(0) scale(1);
+      }
+      to {
+        transform: translateY(35px) scale(1.08);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(9px);
+      }
+    }
+
+    @media (max-width: 650px) {
+      header {
+        padding: 22px 14px;
+      }
+
+      .hero-card {
+        padding: 34px 18px;
+        border-radius: 30px;
+      }
+
+      section {
+        padding: 30px 14px;
+      }
+
+      .card {
+        border-radius: 24px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .foto-card,
+      .foto-card:nth-child(odd),
+      .foto-card:nth-child(even) {
+        transform: rotate(0deg);
+      }
+
+      .foto-card img {
+        height: 365px;
+      }
+
+      .nerd-love::before {
+        position: static;
+        display: inline-block;
+        margin-bottom: 18px;
+      }
+
+      .game-list {
+        text-align: left;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="stars"></div>
+  <div class="glow-orb orb-one"></div>
+  <div class="glow-orb orb-two"></div>
+
+  <audio id="musica" loop>
+    <source src="assets/music/High School Musical 2 - You Are The Music In Me - HighSchoolMusicalPL (youtube).mp3" type="audio/mpeg">
+  </audio>
+
+  <header>
+    <div class="hero-card">
+      <span class="tag">20 de outubro de 2024</span>
+
+      <h1>Feliz Dia dos Namorados, meu amor 💖</h1>
+
+      <p class="hero-subtitle">
+        Minha pessoa favorita nesse universo inteiro ❤️
+      </p>
+
+      <p>
+        Desde o dia <strong>20 de outubro de 2024</strong>, minha vida ganhou uma nova fase.
+        E desde então, cada dia ao seu lado virou uma nova aventura.
+      </p>
+
+
+      <div class="contador-amor">
+        Estamos no modo cooperativo há
+        <strong><span id="contador">carregando...</span></strong>,
+        e cada segundo é uma nova aventura ao seu lado.
+      </div>
+
+      <button class="btn-music" onclick="tocarMusica()">
+        🎵 Toma essa trilha. :)
+      </button>
+
+      <p class="music-note">
+        Entre milhões de linhas de código, milhares de jogos e infinitas possibilidades, minha escolha favorita continua sendo você. ❤️
+      </p>
+
+      <div class="scroll-hint">
+        role para começar nossa história ↓
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="card">
+        <h2>Você é a melhor decisão que já tomei :)</h2>
+        <p>
+          Todos os dias, agradeço ao universo por ter te colocado no meu caminho.<br><br>
+          Desde aquele dia na academia, eu já sabia que algo diferente tinha acontecido...
+          Dizem que amores se encontram duas vezes na vida: a primeira é rápida, a segunda é pra ficar.<br><br>
+          Desde o nosso primeiro encontro, você fez morada no meu coração. E mesmo depois de tanto tempo sem nos vermos,
+          nossa conexão nunca se perdeu. Era como se a distância fosse apenas um teste para confirmar que você era a mulher
+          que o destino reservou pra mim.<br><br>
+          E olha só: o destino acertou em cheio. Você é uma das melhores coisas que já me aconteceu,
+          e eu sou eternamente grato por ter você ao meu lado.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Nossa linha do tempo ❤️</h2>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>20/10/2024</strong><br>
+            O dia em que essa aventura começou oficialmente.
+          </div>
+
+          <div class="timeline-item">
+            <strong>Primeiros momentos</strong><br>
+            Conversas, risadas, cuidado e aquele sentimento de “tem algo especial aqui”.
+          </div>
+
+          <div class="timeline-item">
+            <strong>Nossas memórias</strong><br>
+            Viagens, fotos, brincadeiras, carinho e pequenas histórias que viraram gigantes no meu coração.
+          </div>
+
+          <div class="timeline-item">
+            <strong>Hoje</strong><br>
+            Eu continuo tendo a mesma certeza: eu escolheria você de novo, em todas as fases.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Alguns dos nossos momentos 📸</h2>
+
+        <div class="gallery">
+          <article class="foto-card">
+            <img src="assets/images/Pedido.jpeg" alt="Pedido de namoro">
+            <p>O dia em que você deu o passo que eu tinha medo de dar. Hoje vejo o quanto isso mudou minha vida.</p>
+          </article>
+
+          <article class="foto-card">
+            <img src="assets/images/Nos dois.jpeg" alt="Nós dois">
+            <p>Olha que casal lindo! Nem parece que tenta se estapear 87 vezes ao dia. kkkkkk</p>
+          </article>
+
+          <article class="foto-card">
+            <img src="assets/images/Skincare.jpeg" alt="Skincare juntos">
+            <p>Obrigado pelo cuidado, pela paciência e pelo amor que você tem por mim. A gente deveria fazer isso mais vezes. hihihi</p>
+          </article>
+
+          <article class="foto-card">
+            <img src="assets/images/Nos e a torre..jpeg" alt="Nós e a torre">
+            <p>Tá vendo essa torre? Alta, né? Pode colocar 50 dessa que ainda não chega no tamanho do meu amor por ti.</p>
+          </article>
+
+          <article class="foto-card">
+            <img src="assets/images/Nos e a torre pt.2.jpeg" alt="Nós e a torre parte 2">
+            <p>A gente até tentou encontrar algo mais alto que o nosso amor... mas não deu muito certo, né? kkkkkk</p>
+          </article>
+
+          <article class="foto-card">
+            <img src="assets/images/Nos e o Coliseu..jpeg" alt="Nós e o Coliseu">
+            <p>Nem o Coliseu, com toda sua grandiosidade, consegue representar a magnitude do meu amor por você.</p>
+          </article>
+
+          <article class="foto-card">
+            <img src="assets/images/Dois doido no escuro..jpeg" alt="Dois doidos no escuro">
+            <p>Desde o início, você mudou minha vida de forma positiva. Eu não poderia pedir mais.</p>
+          </article>
+
+          <article class="foto-card">
+            <img src="assets/images/Fontana de Trevi.jpeg" alt="Fontana di Trevi">
+            <p>E agora eu grito em todos os cantos do mundo: eu vou casar com essa mulher!</p>
+          </article>
+        
+            <article class="foto-card">
+            <img src="assets/images/Te prepara, pq nossa vida vai ser um espetáculo!.png" alt="Nossas Alianças">
+            <p>Minha noiva, maravilhosa, campanheira nos momentos<br>mais importante da minha vida!
+            Te amo demais, e mal posso esperar para viver cada capítulo dessa história com você. ❤️</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Declaração Nerdola 💻❤️🎮</h2>
+
+        <div class="nerd-love">
+          <p>
+            Se a vida fosse um jogo, você seria a melhor conquista que eu já desbloqueei.
+          </p>
+
+          <p>
+            Se eu pudesse escolher qualquer personagem para compartilhar essa aventura,
+            escolheria você todas as vezes.
+          </p>
+
+          <p>
+            Você transformou dias comuns em fases especiais, derrotou meus chefes mais difíceis
+            e tornou cada missão muito mais divertida.
+          </p>
+
+          <p>
+            E se o amor fosse um programa de computador, você seria a única linha de código
+            que eu jamais apagaria.
+          </p>
+
+          <p>
+            Porque desde que você entrou na minha vida, tudo parece funcionar melhor.
+          </p>
+
+          <p>
+            Sem bugs. Sem travamentos. Apenas nós dois escrevendo nossa própria história.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Você é meu combustível pra vida</h2>
+
+        <p class="references">
+          Assim como Mario nunca desistiu da Peach,<br>
+          assim como Link nunca desistiu da Zelda,<br>
+          assim como Ash nunca desistiu da Misty,<br>
+          assim como Patrick nunca desistiu da Kat,<br>
+          assim como Marcus nunca desistiu da Sasha,<br>
+          assim como Ross nunca desistiu da Rachel,<br>
+          e assim como Jake nunca desistiu da Amy...
+        </p>
+
+        <br>
+
+        <p>
+          Eu nunca desistirei de você.<br><br>
+
+          Porque você é a minha música, a melodia que faz meu coração bater mais forte
+          e a letra que dá sentido à minha vida.<br><br>
+
+          Não importa o nível de dificuldade da vida: com você, tudo fica mais leve,
+          mais divertido e, às vezes, até um pouco violento. kkkkkkk ❤️
+        </p>
+      </div>
+
+      <div class="card checkpoint">
+        <h2>Meu checkpoint favorito</h2>
+        <p>
+          Se a vida fosse um jogo, eu escolheria voltar sempre para o mesmo checkpoint:<br>
+          qualquer momento em que eu esteja ao seu lado.
+        </p>
+      </div>
+
+      <p class="final-message">
+        E mesmo que eu aprendesse todas as linguagens de programação do mundo,<br>
+        ainda não encontraria palavras suficientes para dizer o quanto eu amo você.
+      </p>
+
+      <div class="achievement">
+        <h2>🏆 Achievement Unlocked</h2>
+
+        <h3>❤️ Alma Gêmea Encontrada ❤️</h3>
+
+        <div class="game-list">
+          ✅ Encontrar você<br>
+          ✅ Me apaixonar por você<br>
+          ✅ Construir memórias incríveis<br>
+          ⏳ Casamento<br>
+          ⏳ Envelhecer juntos<br>
+          ⏳ Final feliz
+        </div>
+      </div>
+
+      <section class="future">
+        <h2>Próximas Missões ❤️</h2>
+
+        <p>☑ Continuar te amando todos os dias</p>
+        <p>☑ Fazer mais viagens juntos</p>
+        <p>☑ Construir nosso lar</p>
+        <p>☑ Casar com você</p>
+        <p>☑ Envelhecer ao seu lado</p>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    Feito com amor, código e um coração totalmente deployado pra você ❤️
+  </footer>
+
+  <script>
+    function tocarMusica() {
+      const musica = document.getElementById("musica");
+      const botao = document.querySelector(".btn-music");
+
+      musica.play()
+        .then(() => {
+          botao.textContent = "🎶 Pega um presentinho. :)";
+        })
+        .catch(() => {
+          botao.textContent = "🎵 Clique novamente para tocar";
+        });
+    }
+
+    function atualizarContador() {
+      const inicio = new Date("2024-10-20T00:00:00");
+      const agora = new Date();
+
+      let diferenca = agora - inicio;
+
+      if (diferenca < 0) {
+        document.getElementById("contador").textContent = "0 dias";
+        return;
+      }
+
+      const segundosTotais = Math.floor(diferenca / 1000);
+      const dias = Math.floor(segundosTotais / 86400);
+      const horas = Math.floor((segundosTotais % 86400) / 3600);
+      const minutos = Math.floor((segundosTotais % 3600) / 60);
+      const segundos = segundosTotais % 60;
+
+      document.getElementById("contador").textContent =
+        `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+    }
+
+    function criarCoracao() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = Math.random() > 0.45 ? "❤️" : "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 18 + 14 + "px";
+      heart.style.animationDuration = Math.random() * 4 + 5 + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 9000);
+    }
+
+    function criarEstrelas() {
+      const stars = document.getElementById("stars");
+
+      for (let i = 0; i < 90; i++) {
+        const star = document.createElement("div");
+
+        star.classList.add("star");
+        star.innerHTML = Math.random() > 0.82 ? "✦" : "✨";
+        star.style.left = Math.random() * 100 + "vw";
+        star.style.top = Math.random() * 100 + "vh";
+        star.style.fontSize = Math.random() * 11 + 8 + "px";
+        star.style.animationDelay = Math.random() * 5 + "s";
+        star.style.animationDuration = Math.random() * 3 + 2.4 + "s";
+
+        stars.appendChild(star);
+      }
+    }
+
+    atualizarContador();
+    criarEstrelas();
+
+    setInterval(atualizarContador, 1000);
+    setInterval(criarCoracao, 720);
+  </script>
+
+</body>
+</html>
